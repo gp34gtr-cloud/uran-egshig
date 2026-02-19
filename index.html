@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For Uran Egshig</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Intro Screen -->
+    <div class="intro-screen" id="introScreen">
+        <div class="intro-content">
+            <div class="intro-hearts">💗</div>
+            <h1 class="intro-name">Uran Egshig</h1>
+            <p class="intro-sub">something special is loading...</p>
+            <div class="intro-loader"><div class="intro-loader-bar"></div></div>
+        </div>
+    </div>
+
+    <!-- Confetti Canvas -->
+    <canvas id="confettiCanvas"></canvas>
+
+    <!-- Music Toggle -->
+    <button class="music-btn" id="musicBtn" title="Toggle music">
+        <span id="musicIcon">🎵</span>
+    </button>
+    <!-- Add your song URL to the src below -->
+    <audio id="bgMusic" loop>
+        <source src="" type="audio/mpeg">
+    </audio>
+
+    <!-- Konami Easter Egg -->
+    <div class="konami-overlay" id="konamiOverlay">
+        <div class="konami-content">
+            <div class="konami-emoji">💗</div>
+            <h2>You found the secret!</h2>
+            <p>You're literally the cheat code to my happiness, Uran Egshig 🥺</p>
+            <button class="konami-close" id="konamiClose">Close 💗</button>
+        </div>
+    </div>
+
+    <div class="floating-bg" id="floatingBg" aria-hidden="true"></div>
+
+    <!-- Hero -->
+    <section class="hero" id="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">Uran Egshig</h1>
+            <p class="hero-subtitle" id="heroSubtitle"></p>
+            <button class="btn-surprise" id="btnSurprise">
+                <span>Open Surprise</span>
+                <div class="sparkle-container" id="sparkleContainer"></div>
+            </button>
+        </div>
+        <div class="scroll-hint">
+            <span>scroll down</span>
+            <div class="scroll-arrow">↓</div>
+        </div>
+    </section>
+
+    <!-- Counter -->
+    <section class="section counter-section" id="counter">
+        <div class="container">
+            <h2 class="section-title">Us, In Numbers</h2>
+            <div class="counter-grid">
+                <div class="counter-card">
+                    <div class="counter-number" id="counterDays">0</div>
+                    <div class="counter-label">Days</div>
+                </div>
+                <div class="counter-card">
+                    <div class="counter-number" id="counterHours">0</div>
+                    <div class="counter-label">Hours</div>
+                </div>
+                <div class="counter-card">
+                    <div class="counter-number" id="counterMinutes">0</div>
+                    <div class="counter-label">Minutes</div>
+                </div>
+                <div class="counter-card">
+                    <div class="counter-number" id="counterSeconds">0</div>
+                    <div class="counter-label">Seconds</div>
+                </div>
+            </div>
+            <p class="counter-caption">...and every second is my favorite 💗</p>
+        </div>
+    </section>
+
+    <!-- Surprise -->
+    <section class="section surprise-section" id="surprise">
+        <div class="container">
+            <div class="surprise-card" id="surpriseCard">
+                <p class="surprise-text">Every moment with you feels like a dream I never want to wake up from. 💗</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reasons I Like You -->
+    <section class="section reasons-section" id="reasons">
+        <div class="container">
+            <h2 class="section-title">Reasons I Like You</h2>
+            <p class="section-subtitle">Tap each card to reveal</p>
+            <div class="reasons-grid" id="reasonsGrid"></div>
+        </div>
+    </section>
+
+    <!-- Things You Love -->
+    <section class="section favorites-section" id="favorites">
+        <div class="container">
+            <h2 class="section-title">Things You Love</h2>
+            <p class="section-subtitle">Tap one to explore</p>
+            <div class="favorites-grid">
+                <button class="fav-card" data-fav="oreos">
+                    <div class="fav-icon">🍪</div>
+                    <div class="fav-name">Oreos</div>
+                    <div class="fav-hint">tap to enter</div>
+                </button>
+                <button class="fav-card" data-fav="pink">
+                    <div class="fav-icon">💗</div>
+                    <div class="fav-name">Pink</div>
+                    <div class="fav-hint">tap to enter</div>
+                </button>
+                <button class="fav-card" data-fav="minecraft">
+                    <div class="fav-icon">⛏️</div>
+                    <div class="fav-name">Minecraft</div>
+                    <div class="fav-hint">tap to enter</div>
+                </button>
+                <button class="fav-card" data-fav="roblox">
+                    <div class="fav-icon">🎮</div>
+                    <div class="fav-name">Roblox</div>
+                    <div class="fav-hint">tap to enter</div>
+                </button>
+                <button class="fav-card" data-fav="demonslayer">
+                    <div class="fav-icon">🌸</div>
+                    <div class="fav-name">Demon Slayer</div>
+                    <div class="fav-hint">tap to enter</div>
+                </button>
+                <button class="fav-card" data-fav="pinkbuldaak">
+                    <div class="fav-icon">🍜</div>
+                    <div class="fav-name">Pink Buldaak</div>
+                    <div class="fav-hint">tap to enter</div>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Favorite Detail Overlay -->
+    <div class="fav-overlay" id="favOverlay">
+        <div class="fav-detail" id="favDetail">
+            <button class="fav-close" id="favClose">✕</button>
+            <div class="fav-detail-bg" id="favDetailBg"></div>
+            <div class="fav-detail-content">
+                <div class="fav-detail-icon" id="favDetailIcon"></div>
+                <h3 class="fav-detail-title" id="favDetailTitle"></h3>
+                <p class="fav-detail-text" id="favDetailText"></p>
+                <div class="fav-detail-extra" id="favDetailExtra"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Minecraft Section -->
+    <section class="section minecraft-section" id="minecraft">
+        <div class="pixel-bg"></div>
+        <div class="container">
+            <div class="quote-card mc-quote">
+                <div class="quote-icon">⛏️</div>
+                <p class="quote-text">"If I built a world, it would always be peaceful — and you'd be there."</p>
+                <div class="quote-tag">Minecraft</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Roblox Section -->
+    <section class="section roblox-section" id="roblox">
+        <div class="container">
+            <div class="quote-card roblox-quote">
+                <div class="quote-icon">🎮</div>
+                <p class="quote-text">"Even with infinite respawns, I'd still choose you every time."</p>
+                <div class="quote-tag">Roblox</div>
+            </div>
+            <div class="respawn-area" id="respawnArea"></div>
+            <button class="btn-respawn" id="btnRespawn">Respawn Love</button>
+        </div>
+    </section>
+
+    <!-- Demon Slayer Section -->
+    <section class="section ds-section" id="demonslayer">
+        <div class="ds-blossoms" id="dsBlossoms"></div>
+        <div class="ds-glow" id="dsGlow"></div>
+        <div class="container">
+            <div class="quote-card ds-quote">
+                <div class="quote-icon">🌸</div>
+                <p class="quote-text">"Strength isn't always fighting. Sometimes it's caring."</p>
+                <div class="quote-tag">Demon Slayer</div>
+            </div>
+            <button class="btn-protect" id="btnProtect">Protect Your Smile</button>
+        </div>
+    </section>
+
+    <!-- Timeline -->
+    <section class="section timeline-section" id="timeline">
+        <div class="container">
+            <h2 class="section-title">Our Story</h2>
+            <p class="section-subtitle">Every chapter matters</p>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-dot">💗</div>
+                    <div class="timeline-card">
+                        <div class="timeline-date">The Beginning</div>
+                        <div class="timeline-text">The day I first talked to you 🥺</div>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot">😊</div>
+                    <div class="timeline-card">
+                        <div class="timeline-date">First Smile</div>
+                        <div class="timeline-text">You made me smile for the first time like that</div>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot">🌙</div>
+                    <div class="timeline-card">
+                        <div class="timeline-date">Late Nights</div>
+                        <div class="timeline-text">Our first late night conversation that lasted forever</div>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot">💑</div>
+                    <div class="timeline-card">
+                        <div class="timeline-date">Us</div>
+                        <div class="timeline-text">The day you became mine 💗</div>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot">⭐</div>
+                    <div class="timeline-card">
+                        <div class="timeline-date">Right Now</div>
+                        <div class="timeline-text">Still falling for you every single day</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Love Letter -->
+    <section class="section letter-section" id="letter">
+        <div class="container">
+            <h2 class="section-title">A Letter For You</h2>
+            <div class="letter-card" id="letterCard">
+                <div class="letter-text" id="letterText"></div>
+                <span class="letter-cursor" id="letterCursor">|</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quiz -->
+    <section class="section quiz-section" id="quiz">
+        <div class="container">
+            <h2 class="section-title">How Well Do You Know Her?</h2>
+            <p class="section-subtitle">Let's see 👀</p>
+            <div class="quiz-card" id="quizCard">
+                <div class="quiz-progress" id="quizProgress"></div>
+                <div class="quiz-question" id="quizQuestion"></div>
+                <div class="quiz-options" id="quizOptions"></div>
+                <div class="quiz-feedback" id="quizFeedback"></div>
+                <button class="quiz-next" id="quizNext" style="display:none">Next →</button>
+            </div>
+            <div class="quiz-result" id="quizResult" style="display:none">
+                <div class="quiz-result-icon">🏆</div>
+                <div class="quiz-result-text" id="quizResultText"></div>
+                <button class="quiz-restart" id="quizRestart">Play Again</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Moments -->
+    <section class="section moments-section" id="moments">
+        <div class="container">
+            <h2 class="section-title">Things I Love About Us</h2>
+            <div class="moments-grid">
+                <div class="moment-card">
+                    <div class="moment-icon">💬</div>
+                    <p>Our late night conversations</p>
+                </div>
+                <div class="moment-card">
+                    <div class="moment-icon">😂</div>
+                    <p>When we laugh at the same thing</p>
+                </div>
+                <div class="moment-card">
+                    <div class="moment-icon">🌙</div>
+                    <p>Saying goodnight</p>
+                </div>
+                <div class="moment-card">
+                    <div class="moment-icon">☀️</div>
+                    <p>Your good morning texts</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Promise Section -->
+    <section class="section promise-section" id="promise">
+        <div class="container">
+            <h2 class="section-title">My Promises To You</h2>
+            <div class="promises-list">
+                <div class="promise-item">
+                    <div class="promise-check">✓</div>
+                    <p>I'll always make you smile</p>
+                </div>
+                <div class="promise-item">
+                    <div class="promise-check">✓</div>
+                    <p>I'll listen when you need me</p>
+                </div>
+                <div class="promise-item">
+                    <div class="promise-check">✓</div>
+                    <p>I'll be your biggest supporter</p>
+                </div>
+                <div class="promise-item">
+                    <div class="promise-check">✓</div>
+                    <p>I'll share my Oreos with you</p>
+                </div>
+                <div class="promise-item">
+                    <div class="promise-check">✓</div>
+                    <p>I'll protect your heart</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Secret Message -->
+    <section class="section secret-section" id="secret">
+        <div class="container">
+            <div class="secret-box">
+                <button class="secret-btn" id="secretBtn">
+                    <span>🔒 A Secret Message</span>
+                </button>
+                <div class="secret-reveal" id="secretReveal">
+                    <p>Uran Egshig, you're my favorite place to be. 💗</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-hearts">💗 🧡 💗 🧡 💗</div>
+        <p>Made for Uran Egshig</p>
+        <p class="footer-small">with love</p>
+        <button class="btn-top" id="btnTop">↑ Back to Top</button>
+    </footer>
+
+    <script src="script.js" defer></script>
+</body>
+</html>
