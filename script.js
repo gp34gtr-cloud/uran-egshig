@@ -1,3 +1,37 @@
+// ===== PASSWORD LOCK =====
+(function () {
+    var overlay = document.getElementById('passwordOverlay');
+    if (!overlay) return;
+    if (localStorage.getItem('siteUnlocked') === 'true') {
+        overlay.classList.add('hidden');
+        return;
+    }
+    document.body.style.overflow = 'hidden';
+    var input = document.getElementById('passwordInput');
+    var btn = document.getElementById('passwordBtn');
+    var errorEl = document.getElementById('passwordError');
+    var box = overlay.querySelector('.password-box');
+
+    function attempt() {
+        if (input.value.trim().toLowerCase() === 'uran') {
+            localStorage.setItem('siteUnlocked', 'true');
+            overlay.classList.add('fade-out');
+            document.body.style.overflow = '';
+            setTimeout(function () { overlay.classList.add('hidden'); }, 850);
+        } else {
+            errorEl.classList.add('visible');
+            box.classList.remove('shake');
+            void box.offsetWidth;
+            box.classList.add('shake');
+            input.value = '';
+            setTimeout(function () { errorEl.classList.remove('visible'); }, 2500);
+        }
+    }
+
+    btn.addEventListener('click', attempt);
+    input.addEventListener('keydown', function (e) { if (e.key === 'Enter') attempt(); });
+})();
+
 document.addEventListener('DOMContentLoaded', () => {
 
     // ===== ELEMENTS =====

@@ -381,3 +381,92 @@ body {
     *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
     html { scroll-behavior: auto; }
 }
+
+/* ===== PASSWORD OVERLAY ===== */
+.password-overlay {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: linear-gradient(135deg, var(--pink-light), var(--cream), var(--orange-light));
+    z-index: 99999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.8s ease;
+}
+.password-overlay.fade-out { opacity: 0; pointer-events: none; }
+.password-overlay.hidden { display: none; }
+.password-box {
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    padding: 50px 40px;
+    text-align: center;
+    box-shadow: 0 8px 40px rgba(236, 64, 122, 0.2);
+    max-width: 380px;
+    width: 90%;
+}
+.password-heart { font-size: 4rem; margin-bottom: 15px; animation: introPulse 1s ease infinite; }
+.password-title {
+    font-size: 1.6rem; font-weight: 700;
+    background: linear-gradient(135deg, var(--pink-deep), var(--orange-deep));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    margin-bottom: 25px;
+}
+.password-input {
+    width: 100%; padding: 14px 18px;
+    border: 2px solid var(--pink-soft);
+    border-radius: var(--radius-full);
+    font-family: var(--font-main);
+    font-size: 1rem; font-weight: 600;
+    color: var(--text-dark); text-align: center;
+    outline: none; transition: border-color var(--transition);
+    margin-bottom: 16px; display: block;
+    min-height: 44px; box-sizing: border-box;
+}
+.password-input:focus { border-color: var(--pink-medium); }
+.password-btn {
+    width: 100%; padding: 14px;
+    background: linear-gradient(135deg, var(--pink-medium), var(--orange-deep));
+    color: var(--white); border: none; border-radius: var(--radius-full);
+    font-family: var(--font-main); font-size: 1rem; font-weight: 700;
+    cursor: pointer; transition: all var(--transition); min-height: 44px;
+}
+.password-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(236, 64, 122, 0.3); }
+.password-error {
+    margin-top: 14px; font-size: 0.9rem;
+    color: var(--pink-deep); font-weight: 600;
+    opacity: 0; transition: opacity 0.3s ease; min-height: 22px;
+}
+.password-error.visible { opacity: 1; }
+@keyframes pwShake {
+    0%, 100% { transform: translateX(0); }
+    20% { transform: translateX(-8px); }
+    40% { transform: translateX(8px); }
+    60% { transform: translateX(-6px); }
+    80% { transform: translateX(6px); }
+}
+.password-box.shake { animation: pwShake 0.5s ease; }
+
+/* ===== ADDITIONAL MOBILE TWEAKS ===== */
+@media (max-width: 480px) {
+    .surprise-card { padding: 30px 20px; }
+    .fav-detail-content { padding: 45px 18px 28px; }
+    .fav-detail-text { font-size: 1rem; }
+    .quiz-card { padding: 24px 18px; }
+    .quiz-question { font-size: 1.1rem; }
+    .quiz-result { padding: 35px 20px; }
+    .promise-item { padding: 15px 16px; }
+    .timeline-card { padding: 14px 16px; }
+    .letter-card { padding: 28px 18px; }
+    .counter-card { padding: 22px 10px; }
+    .section { padding: 60px 0; }
+    .favorites-grid { grid-template-columns: repeat(2, 1fr); }
+    .btn-surprise, .btn-respawn, .btn-protect,
+    .secret-btn, .btn-top, .konami-close,
+    .quiz-next, .quiz-restart, .quiz-option { min-height: 44px; }
+    .section-subtitle { font-size: 0.95rem; margin-bottom: 28px; }
+    .footer-hearts { font-size: 1.2rem; letter-spacing: 5px; }
+    .konami-content { padding: 35px 24px; }
+    .konami-content h2 { font-size: 1.5rem; }
+    .password-box { padding: 40px 24px; }
+}
